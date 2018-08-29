@@ -1,23 +1,40 @@
-﻿<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+﻿<StackLayout xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App1.UrlInfoBox" BindingContext="{Binding Element, Mode=OneWay}">
-    <Grid.RowDefinitions>
-        <RowDefinition Height="*" />
-        <RowDefinition Height="*" />
-        <RowDefinition Height="3*" />
-    </Grid.RowDefinitions>
-    <Label Grid.Row="0" Text="{Binding Protocol, Mode=OneWay}"/>
-    <Label Grid.Row="1" Text="{Binding Address, Mode=OneWay}" />
-    <ListView Grid.Row="2" ItemsSource="{Binding Arguments, Mode=OneWay}">
+             xmlns:local="clr-namespace:App1"
+             x:Class="App1.UrlInfoBox">
+    <StackLayout.Resources>
+        <ResourceDictionary>
+            <local:CollectionToCountConverter x:Key="ToCountConverter" />
+        </ResourceDictionary>
+    </StackLayout.Resources>
+    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="10">
+        <Label Text="Protocol: " HorizontalTextAlignment="End" FontAttributes="Bold, Italic"/>
+        <Label Text="{Binding Protocol}"/>
+    </StackLayout>
+    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="10">
+        <Label Text="Address: " HorizontalTextAlignment="End" FontAttributes="Bold, Italic"/>
+        <Label Text="{Binding Address}" />
+    </StackLayout>
+    <Label Text="Arguments:" HorizontalTextAlignment="Center" Margin="10" FontAttributes="Bold, Italic"/>
+    <ListView ItemsSource="{Binding Arguments}" x:Name="ArgumentsList">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Margin="5" Text="{Binding Key, Mode=OneWay}"/>
-                        <Label Margin="5" Text="{Binding Value, Mode=OneWay}"/>
-                    </StackLayout>
+                    <Grid>
+                        <StackLayout Orientation="Horizontal" Margin="10" HorizontalOptions="Center">
+                            <Label Margin="5" FontAttributes="Bold" Text="{Binding Key, StringFormat='{}{0}: '}"/>
+                            <Label Margin="5" Text="{Binding Value}"/>
+                        </StackLayout>
+                    </Grid>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
-</Grid>
+    <Label HorizontalTextAlignment="Center" Margin="10" FontAttributes="Bold" TextColor="Red">
+        <Label.Triggers>
+            <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference Name=ArgumentsList}, Path=ItemsSource, Converter={StaticResource ToCountConverter}}" Value="0">
+                <Setter Property="Label.Text" Value="Not arguments"/>
+            </DataTrigger>
+        </Label.Triggers>
+    </Label>
+</StackLayout>

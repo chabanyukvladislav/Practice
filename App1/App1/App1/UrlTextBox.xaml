@@ -1,4 +1,23 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<Entry xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App1.UrlTextBox" x:Name="UrlEntry"/>
+﻿<Entry xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="App1.UrlTextBox"
+       x:Name="UrlEntry"
+       xmlns:local="clr-namespace:App1">
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup>
+            <VisualState x:Name="Normal">
+                <VisualState.Setters>
+                    <Setter Property="BackgroundColor" Value="White" />
+                </VisualState.Setters>
+            </VisualState>
+            <VisualState x:Name="Focused">
+                <VisualState.Setters>
+                    <Setter Property="BackgroundColor" Value="AntiqueWhite" />
+                </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+    <Entry.Behaviors>
+        <local:UrlTextBehavior />
+    </Entry.Behaviors>
+</Entry>

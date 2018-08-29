@@ -1,9 +1,8 @@
 ﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace App1
 {
-	public partial class Page: ContentPage
+	public partial class Page
 	{
 		public Page ()
 		{

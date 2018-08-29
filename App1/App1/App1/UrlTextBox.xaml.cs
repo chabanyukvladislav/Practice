@@ -2,37 +2,40 @@
 
 namespace App1
 {
-	public partial class UrlTextBox: Entry
-	{
-	    public new static readonly BindableProperty TextProperty;
+    public partial class UrlTextBox
+    {
+        public static readonly BindableProperty UrlTextProperty;
 
-	    public new string Text
-	    {
-	        get => GetValue(TextProperty).ToString();
-	        set => SetValue(TextProperty, value);
-	    }
-
-	    static UrlTextBox()
-	    {
-	        TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(UrlTextBox), "http://google.com.ua", BindingMode.TwoWay);
+        public string UrlText
+        {
+            get => GetValue(UrlTextProperty).ToString();
+            set => SetValue(UrlTextProperty, value);
         }
 
-	    public UrlTextBox ()
-		{
-		    InitializeComponent();
-		    UrlEntry.Text = Text;
+        static UrlTextBox()
+        {
+            UrlTextProperty = BindableProperty.Create(nameof(UrlText), typeof(string), typeof(UrlTextBox), "http://google.com.ua?id=123&text=test", BindingMode.TwoWay);
+        }
+
+        public UrlTextBox()
+        {
+            InitializeComponent();
+            UrlEntry.Text = UrlText;
             UrlEntry.TextChanged += OnEntryChanged;
-		}
+        }
 
-	    private void OnEntryChanged(object sender, TextChangedEventArgs e)
-	    {
-	        Text = e.NewTextValue;
-	    }
+        private void OnEntryChanged(object sender, TextChangedEventArgs e)
+        {
+            if (UrlText != e.NewTextValue)
+                UrlText = e.NewTextValue;
+        }
 
-	    protected override void OnPropertyChanged(string propertyName = null)
-	    {
-	        if (propertyName == TextProperty.PropertyName)
-	            UrlEntry.Text = Text;
-	    }
-	}
+        protected override void OnPropertyChanged(string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+
+            if (propertyName == UrlTextProperty.PropertyName && UrlText != UrlEntry.Text)
+                UrlEntry.Text = UrlText;
+        }
+    }
 }

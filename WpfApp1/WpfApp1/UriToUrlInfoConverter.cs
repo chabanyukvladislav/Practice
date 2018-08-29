@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using Xamarin.Forms;
+using System.Windows.Data;
 
-namespace App1
+namespace WpfApp1
 {
     internal class UriToUrlInfoConverter : IValueConverter
     {

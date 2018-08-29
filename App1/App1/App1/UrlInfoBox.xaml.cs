@@ -22,5 +22,11 @@ namespace App1
         {
             InitializeComponent();
         }
+
+        protected override void OnPropertyChanged(string propertyName = null)
+        {
+            if (propertyName == ElementProperty.PropertyName)
+                BindingContext = Element;
+        }
     }
 }

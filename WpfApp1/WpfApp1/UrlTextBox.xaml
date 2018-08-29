@@ -1,0 +1,24 @@
+﻿<TextBox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+       x:Class="WpfApp1.UrlTextBox"
+       x:Name="UrlEntry"
+       xmlns:local="clr-namespace:WpfApp1" FontSize="20">
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup>
+            <VisualState Name="Normal">
+                <Storyboard>
+                    <ColorAnimation Storyboard.TargetProperty="Background" Storyboard.TargetName="UrlEntry" To="White" />
+                </Storyboard>
+            </VisualState>
+            <VisualState Name="Focused">
+                <Storyboard>
+                    <ColorAnimation Storyboard.TargetProperty="Background" Storyboard.TargetName="UrlEntry" To="AntiqueWhite" />
+                </Storyboard>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+    <i:Interaction.Behaviors>
+        <local:UrlTextBehavior />
+    </i:Interaction.Behaviors>
+</TextBox>
