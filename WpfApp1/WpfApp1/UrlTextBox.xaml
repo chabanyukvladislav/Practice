@@ -4,16 +4,19 @@
        x:Class="WpfApp1.UrlTextBox"
        x:Name="UrlEntry"
        xmlns:local="clr-namespace:WpfApp1" FontSize="20">
+    <TextBox.Background>
+        <SolidColorBrush x:Name="Brush" Color="White"></SolidColorBrush>
+    </TextBox.Background>
     <VisualStateManager.VisualStateGroups>
-        <VisualStateGroup>
-            <VisualState Name="Normal">
+        <VisualStateGroup x:Name="VisualStateGroup">
+            <VisualState x:Name="Normal">
                 <Storyboard>
-                    <ColorAnimation Storyboard.TargetProperty="Background" Storyboard.TargetName="UrlEntry" To="White" />
+                    <ColorAnimation Duration="0" Storyboard.TargetProperty="Color" Storyboard.TargetName="Brush" To="White" />
                 </Storyboard>
             </VisualState>
-            <VisualState Name="Focused">
+            <VisualState x:Name="Focused">
                 <Storyboard>
-                    <ColorAnimation Storyboard.TargetProperty="Background" Storyboard.TargetName="UrlEntry" To="AntiqueWhite" />
+                    <ColorAnimation Duration="0" Storyboard.TargetProperty="Color" Storyboard.TargetName="Brush" To="AntiqueWhite" />
                 </Storyboard>
             </VisualState>
         </VisualStateGroup>

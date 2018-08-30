@@ -37,6 +37,18 @@ namespace WpfApp1
             InitializeComponent();
             UrlEntry.Text = UrlText;
             UrlEntry.TextChanged += OnEntryChanged;
+            UrlEntry.GotFocus += OnEntryFocused;
+            UrlEntry.LostFocus += OnEntryUnFocused;
+        }
+
+        private void OnEntryFocused(object sender, RoutedEventArgs e)
+        {
+            VisualStateManager.GoToElementState(UrlEntry, "Focused", false);
+        }
+
+        private void OnEntryUnFocused(object sender, RoutedEventArgs e)
+        {
+            VisualStateManager.GoToElementState(UrlEntry, "Normal", false);
         }
 
         private void OnEntryChanged(object sender, TextChangedEventArgs e)
