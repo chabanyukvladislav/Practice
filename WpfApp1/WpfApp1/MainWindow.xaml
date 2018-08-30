@@ -36,11 +36,9 @@
             <RowDefinition Height="5*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Canvas Grid.Row="0">
-            <local:UrlInfoBox Element="{Binding Source={x:Reference Name=Url}, Path=UrlText, Converter={StaticResource ToUrlInfoConverter}}" Width="760" LeftMargin="10" x:Name="UrlInfo"/>
-        </Canvas>
-        <Canvas Grid.Row="1">
-            <local:UrlTextBox x:Name="Url" Width="760" LeftMargin="10"/>
-        </Canvas>
+        <local:UrlInfoBox Element="{Binding Source={x:Reference Name=Url}, Path=UrlText, Converter={StaticResource ToUrlInfoConverter}}" Margin="10" x:Name="UrlInfo"/>
+        <StackPanel Grid.Row="1" Margin="10">
+            <local:UrlTextBox x:Name="Url"/>
+        </StackPanel>
     </Grid>
 </Window>

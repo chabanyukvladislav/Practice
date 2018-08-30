@@ -13,9 +13,19 @@
                 <RowDefinition Height="5*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <local:UrlInfoBox Element="{Binding Source={x:Reference Name=Url}, Path=UrlText, Converter={StaticResource ToUrlInfoConverter}}" Grid.Row="0"/>
+            <local:UrlInfoBox Element="{Binding Source={x:Reference Name=Url}, Path=UrlText, Converter={StaticResource ToUrlInfoConverter}}" Grid.Row="0" x:Name="UrlInfo">
+                <local:UrlInfoBox.Animations>
+                    <local:TopMarginAnimation From="-250" To="-30" KeyStart="0" KeyEnd="0.4"/>
+                    <local:TopMarginAnimation From="-30" To="10" KeyStart="0.4" KeyEnd="1"/>
+                </local:UrlInfoBox.Animations>
+            </local:UrlInfoBox>
             <StackLayout Grid.Row="1">
-                <local:UrlTextBox x:Name="Url" />
+                <local:UrlTextBox x:Name="Url">
+                    <local:UrlTextBox.Animations>
+                        <local:TopMarginAnimation From="110" To="20" KeyStart="0" KeyEnd="0.4"/>
+                        <local:TopMarginAnimation From="20" To="10" KeyStart="0.4" KeyEnd="1"/>
+                    </local:UrlTextBox.Animations>
+                </local:UrlTextBox>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
